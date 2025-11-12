@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Register.css";
+
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+
 import { Link } from "react-router-dom";
+import { GoogleLogin, googleLogout } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+
+
 
 function Login() {
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleLogout = () => {
+    googleLogout();
+    console.log("Logout successful");
+    navigate("/register");
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
+  const handleForgotPassword = () => {
+    navigate("/forgot-password"); // Navigate to the Forgot Password page
+  };
+
   return (
     <div className="main-highlight container">
       <div className="inner-main-highlight row">
@@ -20,14 +45,44 @@ function Login() {
             <p>Login to your account to continue your journey.</p>
             <div className="login-form form-signup ">
               <form action="">
-                <label htmlFor="">Email Address</label>
-                <input type="text" placeholder="Enter your Email" />
-                <label htmlFor="">Password</label>
-                <input type="text" placeholder="Enter your password" />
-                <div className="forgot-password">
-                  <a href="#">Forgot Password?</a>
+                <label htmlFor="email">Email Address</label>
+                <input type="text" id="email" placeholder="Enter your Email" required />
+                <label htmlFor="password">Password</label>
+                <div style={{ position: "relative" }}>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                  />
+                  {showPassword ? (
+                    <FaRegEyeSlash
+                      className="eye-icon"
+                      onClick={togglePasswordVisibility}
+                    />
+                  ) : (
+                    <FaRegEye
+                      className="eye-icon"
+                      onClick={togglePasswordVisibility}
+                    />
+                  )}
                 </div>
-                <input type="button" value="Login" />
+                <div className="forgot-password">
+                  <button
+                    type="button"
+                    onClick={handleForgotPassword}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      color: "#61dafb",
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                    }}
+                  >
+                    Forgot Password?
+                  </button>
+                </div>
+                <input type="submit" value="Login" />
               </form>
               <div className="login-link">
                 Don't have an account?
@@ -40,13 +95,31 @@ function Login() {
                   <span>or login with</span>
                 </div>
                 <div className="social-login mt-3">
-                  <Link to="https://google.com" target="_blank">
+                  {/* <Link to="https://google.com" target="_blank">
                     <button className="google-login">
                       {" "}
                       <FaGoogle />
                       Google
                     </button>
-                  </Link>
+                  </Link> */}
+
+                  <div id="googleBtn">
+                    <GoogleLogin
+                      onSuccess={(credentialResponse) => {
+                        console.log("Login Success:", credentialResponse);
+                        console.log(jwtDecode(credentialResponse.credential));
+                        navigate("/");
+                      }}
+                      onError={() => {
+                        console.log("Login Failed");
+                      }}
+                      auto_select={true}
+                    />
+                    {/* <h3>
+                      <button onClick={handleLogout}>Logout</button>
+                    </h3> */}
+                  </div>
+
                   <Link to="https://github.com" target="_blank">
                     <button className="github-login">
                       <FaGithub />
