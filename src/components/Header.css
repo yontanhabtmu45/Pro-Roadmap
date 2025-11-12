@@ -1,0 +1,153 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: #0B1517;
+  color: #ffffff;
+}
+
+.main-header {
+  background-color: #61dafb;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body.dark-mode .main-header {
+  background-color: transparent;
+}
+
+.inner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header-title {
+  flex: 1; /* Pushes the title to the left */
+}
+
+.header-title h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #111;
+}
+
+body.dark-mode .header-title h2 {
+  color: #ffffff;
+}
+
+.nav-links {
+  flex: 2; /* Pushes the nav links to the right */
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Align nav links and theme toggle */
+.nav-links ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  align-items: center; /* Align items vertically */
+}
+
+.nav-links ul li {
+  display: inline-block;
+}
+
+.nav-links ul li a {
+  text-decoration: none;
+  color: #111;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+body.dark-mode .nav-links ul li a {
+  color: #ffffffbc;
+}
+
+/* General button styles */
+.nav-links ul li button {
+  padding: 0.5rem 1rem;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Sign In button styles */
+.nav-links ul li .sign-in-btn {
+  background-color: #0c5a70;
+  color: #fafafa;
+  border: 2px solid #136176;
+}
+
+.nav-links ul li .sign-in-btn:hover {
+  background-color: #136176;
+  color: #ffffff;
+}
+
+/* Sign Up button styles */
+.nav-links ul li .sign-up-btn {
+  background-color: #61dafb;
+  color: #111;
+  border: 2px solid #61dafb;
+}
+
+.nav-links ul li .sign-up-btn:hover {
+  background-color: #0c5a70;
+  color: #ffffff;
+}
+
+/* Hover effect for buttons */
+.nav-links ul li button:hover {
+  background-color: #61dafb;
+  color: #fff;
+}
+
+/* Dark mode button styles */
+body .dark-mode .nav-links ul li button:first-child {
+  border: none;
+  /* background-color: #136176; */
+  color: #fafafa;
+}
+
+body.dark-mode .nav-links ul li button {
+  border: 2px solid #61dafb;
+  background-color: #61dafb;
+  color: #ffffff;
+}
+
+body.dark-mode .nav-links ul li button:hover {
+  color: #0B1517;
+}
+
+/* Theme toggle button (light and night icons) */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #111;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .theme-toggle {
+  color: #ffffff;
+}
+
+.separator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+}

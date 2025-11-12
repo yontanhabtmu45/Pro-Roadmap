@@ -11,6 +11,7 @@ import Logout from "./Pages/Logout";
 import ForgotPassword from "./Pages/ForgotPassword";
 
 import { gapi } from "gapi-script";
+import Header from "./components/Header";
 
 const clientId =
   "1083223003406-b78mdntufb75hg2srm1uuritag9bcf8f.apps.googleusercontent.com";
@@ -18,6 +19,7 @@ const clientId =
 function App() {
   return (
     <>
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

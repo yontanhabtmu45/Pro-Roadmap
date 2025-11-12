@@ -21,6 +21,10 @@ function Login() {
     navigate("/register");
   };
 
+  const handleloginsucess = () => {
+    navigate("/");
+  }
+
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
   };
@@ -82,7 +86,7 @@ function Login() {
                     Forgot Password?
                   </button>
                 </div>
-                <input type="submit" value="Login" />
+                <input type="submit" value="Login" onClick={handleloginsucess} />
               </form>
               <div className="login-link">
                 Don't have an account?
