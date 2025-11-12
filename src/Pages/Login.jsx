@@ -1,6 +1,7 @@
 import React from "react";
 import "./Register.css";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -30,7 +31,7 @@ function Login() {
               </form>
               <div className="login-link">
                 Don't have an account?
-                <a href="/Register">Sign Up</a>
+                <Link to="/Register">Sign Up</Link>
               </div>
             </div>
             <div className="another-method">
@@ -39,15 +40,19 @@ function Login() {
                   <span>or login with</span>
                 </div>
                 <div className="social-login mt-3">
-                  <button className="google-login">
-                    {" "}
-                    <FaGoogle />
-                    Google
-                  </button>
-                  <button className="github-login">
-                    <FaGithub />
-                    GitHub
-                  </button>
+                  <Link to="https://google.com" target="_blank">
+                    <button className="google-login">
+                      {" "}
+                      <FaGoogle />
+                      Google
+                    </button>
+                  </Link>
+                  <Link to="https://github.com" target="_blank">
+                    <button className="github-login">
+                      <FaGithub />
+                      GitHub
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
