@@ -1,52 +1,81 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CiLight } from "react-icons/ci";
 import { MdOutlineNightlight } from "react-icons/md";
 import "./Header.css";
+import { Link } from "react-router-dom";
 
 function Header() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    try {
+      const saved = localStorage.getItem("theme");
+      if (saved) return saved === "dark";
+      return (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      );
+    } catch (e) {
+      return false;
+    }
+  });
 
-  const toggleTheme = () => {
-    setIsDarkMode((prevMode) => !prevMode);
-    document.body.classList.toggle("dark-mode", !isDarkMode);
-  };
+  useEffect(() => {
+    try {
+      if (isDarkMode)
+        document.documentElement.setAttribute("data-theme", "dark");
+      else document.documentElement.removeAttribute("data-theme");
+      // also keep legacy body class for older components/styles that relied on it
+      document.body.classList.toggle("dark-mode", isDarkMode);
+      localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+    } catch (e) {
+      /* ignore */
+    }
+  }, [isDarkMode]);
+
+  const toggleTheme = () => setIsDarkMode((v) => !v);
 
   return (
-    <div className="main-header">
+    <header className="main-header">
       <div className="inner-header">
         <div className="header-title">
-          <h2>ProRoadmap</h2>
+          <h2>
+            <Link to="/">ProRoadmap</Link>
+          </h2>
         </div>
-        <div className="nav-links">
+        <nav className="nav-links" aria-label="Main navigation">
           <ul>
             <li>
-              <a href="/">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="#">All Roadmaps</a>
+              <Link to="/AllRoadmaps">All Roadmaps</Link>
             </li>
             <li>
-              <a href="#">About Us</a>
+              <Link to="/About">About Us</Link>
             </li>
             <li>
-              <button className="theme-toggle" onClick={toggleTheme}>
-                {isDarkMode ? <MdOutlineNightlight /> : <CiLight />}
+              <button
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-pressed={isDarkMode}
+                aria-label="Toggle theme"
+              >
+                {isDarkMode ? <CiLight /> : <MdOutlineNightlight />}
               </button>
             </li>
             <li>
-              <a href="/Login">
-                <button>Sign In</button>
-              </a>
+              <Link to="/Login">
+                <button className="sign-in-btn">Sign In</button>
+              </Link>
             </li>
             <li>
-              <a href="/Register">
-                <button>Sign Up</button>
-              </a>
+              <Link to="/Register">
+                <button className="sign-up-btn">Sign Up</button>
+              </Link>
             </li>
           </ul>
-        </div>
+        </nav>
       </div>
-    </div>
+    </header>
   );
 }
 

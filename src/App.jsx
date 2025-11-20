@@ -12,6 +12,8 @@ import ForgotPassword from "./Pages/ForgotPassword";
 
 import { gapi } from "gapi-script";
 import Header from "./components/Header";
+import AllRoadmaps from "./Pages/AllRoadmaps";
+import About from "./Pages/About";
 
 const clientId =
   "1083223003406-b78mdntufb75hg2srm1uuritag9bcf8f.apps.googleusercontent.com";
@@ -26,6 +28,8 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/AllRoadmaps" element={<AllRoadmaps />} />
+        <Route path="/About" element={<About />} />
       </Routes>
     </>
   );
