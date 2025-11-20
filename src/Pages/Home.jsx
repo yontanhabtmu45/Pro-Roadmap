@@ -1,6 +1,7 @@
 import React from "react";
-import Header from "../components/Header";
 import "./Home.css";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 function Home() {
@@ -14,8 +15,8 @@ function Home() {
             <p className="hero-sub">From beginner to pro — follow curated roadmaps for Full‑Stack, DevOps, and more.</p>
 
             <div className="hero-actions">
-              <a className="btn" href="/AllRoadmaps">Explore All Roadmaps</a>
-              <a className="btn ghost" href="/Register">Get Started</a>
+              <Link to="/AllRoadmaps" className="btn" >Explore All Roadmaps</Link>
+              <Link to="/Register" className="btn ghost" >Get Started</Link>
             </div>
           </div>
 
@@ -33,7 +34,7 @@ function Home() {
             <p className="card-desc">Master HTML, CSS, JavaScript and modern frameworks like React, Angular, Vue.</p>
             <div className="card-footer">
               <span className="pill">Beginner → Advanced</span>
-              <a className="btn" href="/AllRoadmaps#frontend">View</a>
+              <Link to="/AllRoadmaps#frontend" className="btn" >View</Link>
             </div>
           </article>
 
@@ -42,7 +43,7 @@ function Home() {
             <p className="card-desc">Learn Node.js, databases, authentication and API design.</p>
             <div className="card-footer">
               <span className="pill">Fundamentals → Pro</span>
-              <a className="btn" href="/AllRoadmaps#backend">View</a>
+              <Link to="/AllRoadmaps#backend" className="btn" >View</Link>
             </div>
           </article>
 
@@ -51,7 +52,7 @@ function Home() {
             <p className="card-desc">Understand CI/CD, containers, infra as code and cloud services.</p>
             <div className="card-footer">
               <span className="pill">Intro → Expert</span>
-              <a className="btn" href="/AllRoadmaps#devops">View</a>
+              <Link to="/AllRoadmaps#devops" className="btn" >View</Link>
             </div>
           </article>
         </section>
