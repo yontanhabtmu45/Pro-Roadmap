@@ -3,9 +3,9 @@
 -- ================================
 CREATE TABLE IF NOT EXISTS admin_users (
     admin_id INT AUTO_INCREMENT PRIMARY KEY,
-    admin_email VARCHAR(255) NOT NULL UNIQUE,
-    admin_password_hash VARCHAR(255) NOT NULL,
-    admin_name VARCHAR(255) NOT NULL,
+    admin_email VARCHAR(191) NOT NULL UNIQUE,
+    admin_password_hash VARCHAR(191) NOT NULL,
+    admin_name VARCHAR(191) NOT NULL,
     is_active TINYINT(1) DEFAULT 1,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -15,9 +15,9 @@ CREATE TABLE IF NOT EXISTS admin_users (
 -- ================================
 CREATE TABLE IF NOT EXISTS roadmaps (
     roadmap_id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
+    title VARCHAR(191) NOT NULL,
     description TEXT,
-    category VARCHAR(255),
+    category VARCHAR(191),
     created_by INT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS roadmaps (
 CREATE TABLE IF NOT EXISTS roadmap_steps (
     step_id INT AUTO_INCREMENT PRIMARY KEY,
     roadmap_id INT NOT NULL,
-    step_title VARCHAR(255) NOT NULL,
+    step_title VARCHAR(191) NOT NULL,
     step_description TEXT,
     step_order INT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -44,4 +44,4 @@ CREATE TABLE IF NOT EXISTS roadmap_steps (
 -- Replace email/password_hash with your values
 -- ================================
 INSERT INTO admin_users (admin_email, admin_password_hash, admin_name)
-VALUES ('admin@example.com', '<HASHED_PASSWORD>', 'Site Admin');
+VALUES ('admin@test.com', '12345678', 'adminTest');

@@ -4,16 +4,17 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./Pages/Home";
-import Register from "./Pages/Register";
-import Login from "./Pages/Login";
-import Logout from "./Pages/Logout";
-import ForgotPassword from "./Pages/ForgotPassword";
+import Home from "./markup/Pages/Home";
+import Register from "./markup/Pages/Register";
+import Login from "./markup/Pages/Login";
+import Logout from "./markup/Pages/Logout";
+import ForgotPassword from "./markup/Pages/ForgotPassword";
 
 import { gapi } from "gapi-script";
-import Header from "./components/Header";
-import AllRoadmaps from "./Pages/AllRoadmaps";
-import About from "./Pages/About";
+import Header from "./markup/components/Header";
+import AllRoadmaps from "./markup/Pages/AllRoadmaps";
+import About from "./markup/Pages/About";
+import AdminPanel from "./markup/components/admin/adminPanel";
 
 const clientId =
   "1083223003406-b78mdntufb75hg2srm1uuritag9bcf8f.apps.googleusercontent.com";
@@ -30,6 +31,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/AllRoadmaps" element={<AllRoadmaps />} />
         <Route path="/About" element={<About />} />
+        <Route path="/admin" element={<AdminPanel />} />
       </Routes>
     </>
   );
