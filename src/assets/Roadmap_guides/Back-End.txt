@@ -35,3 +35,11 @@ __________________________________________
       - Pagination
       - Filtering
       - Search functionality
+    * CI/CD
+      - GitHub Actions
+      - GitLab CI
+    * Deployment 
+      - Render
+      - Railway
+      - Firebase
+      - Vercel (for serverless)
