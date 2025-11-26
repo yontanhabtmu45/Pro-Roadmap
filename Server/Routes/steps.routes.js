@@ -1,0 +1,17 @@
+// import express module
+const express = require('express')
+
+const router = express.Router();
+
+// Import step controller
+const stepController = require('../Controllers/steps.controller')
+// create route to handle set steps request on post
+router.post('/api/admin/steps', stepController.setSteps);
+// create route to handle get steps request on get
+router.get('/api/admin/steps/:step_id/:roadmap_id', stepController.getSteps);
+// create route to handle delete steps request on delete
+router.delete('/api/admin/steps/:step_id', stepController.deleteSteps);
+// create route to handle update steps request on put
+router.put('/api/admin/steps/edit/:step_id', stepController.updateSteps)
+
+module.exports = router;
