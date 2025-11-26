@@ -2,7 +2,7 @@
 const conn = require("../config/db.config");
 // Import the bcrypt module
 const bcrypt = require("bcrypt");
-// A function to check if employee exists in the database
+// A function to check if admin exists in the database
 async function checkIfAdminExists(email) {
   const query = "SELECT * FROM admin_users WHERE admin_email = ? ";
   const rows = await conn.executeQuery(query, [email]);

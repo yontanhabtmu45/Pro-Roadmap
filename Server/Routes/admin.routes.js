@@ -5,7 +5,7 @@ const router = express.Router();
 
 // import admin controller
 const adminController = require('../Controllers/admin.controller')
-// crete route to handle add admin request on post
+// create route to handle add admin request on post
 router.post('/api/admin', adminController.createAdmin);
 // create route to handle delete admin request on delete
 router.delete('/api/admin/:admin_id', adminController.deleteAdmin);
