@@ -1,5 +1,5 @@
 // import admin service
-const  adminService = require("../Services/admin.service");
+const adminService = require("../Services/admin.service");
 // create add admin controller
 async function createAdmin(req, res, next) {
   // check if admin already exist in database
@@ -27,4 +27,36 @@ async function createAdmin(req, res, next) {
   }
 }
 
-module.exports = { createAdmin };
+// create delete admin controller
+async function deleteAdmin(req, res, next) {
+  try {
+    const adminId = req.params.admin_id;
+    const result = await adminService.deleteAdmin(adminId);
+    return res
+      .status(200)
+      .json({ status: "success", message: "Admin deleted successfully" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+// create update admin controller
+async function updateAdmin(req, res, next) {
+  try {
+    const adminId = req.params.admin_id
+    const adminData = req.body;
+    const result = await adminService.updateAdmin(adminId, adminData);
+    if(!adminData) {
+      return res.status(400).json({ error: "Failed to update admin"})
+    }
+    return res.status(200).json({ status: "success", message: "Admin updated successfully" });
+    
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({error: "Internal Server Error"})
+  }
+
+}
+
+module.exports = { createAdmin, deleteAdmin, updateAdmin };
