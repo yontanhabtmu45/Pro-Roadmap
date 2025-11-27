@@ -27,6 +27,32 @@ async function createAdmin(req, res, next) {
   }
 }
 
+// create get all admins controller
+async function getAllAdmins(req, res) {
+  try {
+    const result = await adminService.getAllAdmins();
+    return res.status(200).json({ status: "success", data: result });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+// create get admin controller
+async function getAdmin(req, res, next) {
+  try {
+    const { admin_id } = req.params;
+    if (!admin_id) {
+      return res.status(404).json({ message: "admin_id required" });
+    }
+    const result = await adminService.getAdminById(admin_id);
+    return res.status(200).json({ status: "success", data: result });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
 // create delete admin controller
 async function deleteAdmin(req, res, next) {
   try {
@@ -44,19 +70,25 @@ async function deleteAdmin(req, res, next) {
 // create update admin controller
 async function updateAdmin(req, res, next) {
   try {
-    const adminId = req.params.admin_id
+    const adminId = req.params.admin_id;
     const adminData = req.body;
     const result = await adminService.updateAdmin(adminId, adminData);
-    if(!adminData) {
-      return res.status(400).json({ error: "Failed to update admin"})
+    if (!adminData) {
+      return res.status(400).json({ error: "Failed to update admin" });
     }
-    return res.status(200).json({ status: "success", message: "Admin updated successfully" });
-    
+    return res
+      .status(200)
+      .json({ status: "success", message: "Admin updated successfully" });
   } catch (error) {
-    console.log(error)
-    return res.status(500).json({error: "Internal Server Error"})
+    console.log(error);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
-
 }
 
-module.exports = { createAdmin, deleteAdmin, updateAdmin };
+module.exports = {
+  createAdmin,
+  getAllAdmins,
+  getAdmin,
+  deleteAdmin,
+  updateAdmin,
+};

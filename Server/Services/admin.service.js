@@ -33,10 +33,17 @@ async function createAdmin(adminData) {
     return result;
 }
 
+// A function to get all admins 
+async function getAllAdmins() {
+    const query = "SELECT * FROM admin_users ORDER BY created_at DESC";
+    const data = await conn.executeQuery(query)
+    return data;
+}
+
 // A function to get admin by email
-async function getAdminByEmail(admin_email) {
-    const query = "SELECT * FROM admin_users WHERE admin_email = ? ";
-    const rows = await conn.executeQuery(query, [admin_email]);
+async function getAdminById(admin_id) {
+    const query = "SELECT * FROM admin_users WHERE admin_id = ? ";
+    const rows = await conn.executeQuery(query, [admin_id]);
     return rows;
 }
 
@@ -60,7 +67,8 @@ async function updateAdmin(admin_id, adminData) {
 module.exports = {
   createAdmin,
   checkIfAdminExists,
-  getAdminByEmail,
+  getAllAdmins,
+  getAdminById,
   deleteAdmin,
   updateAdmin
 };

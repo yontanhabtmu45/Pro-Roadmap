@@ -17,4 +17,6 @@
       - Admin dashboard (/admin)
       - Roadmaps (/admin/roadmaps)
       - Add Roadmap (/admin/add-roadmap)
-      - Edit Roadmap (/admin/roadmap/edit/:id)
+      - Edit/update Roadmap (/admin/roadmap/edit/:roadmap_id)
+      - steps (/admin/steps)
+      - Edit/update Step (/admin/steps/:step_id)

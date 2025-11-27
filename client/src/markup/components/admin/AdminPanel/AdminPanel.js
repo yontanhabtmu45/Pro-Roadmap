@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Spinner } from "react-bootstrap"; // Example: Bootstrap for styling
+import { Spinner } from "react-bootstrap"; 
 
 const AdminPanel = ({ id }) => {
   const [roadmap, setRoadmap] = useState(null);
