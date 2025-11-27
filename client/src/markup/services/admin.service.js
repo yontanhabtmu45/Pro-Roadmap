@@ -1,4 +1,4 @@
-const api_url = process.env.REACT_APP_API_URL;
+const api_url = "http://localhost:1010/api";
 
 // A function to sent post request to register a new admin
 export const register = async (formData) => {

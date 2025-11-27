@@ -3,7 +3,7 @@ import React, { createContext, useState, useEffect } from 'react';
 //  import util function we created to handle the reading from local storgage
 import getAuth from '../util/auth';
 // Create the AuthContext
-const AuthContext = React.createContext();
+const AuthContext = createContext();
 // create a custom hook to use the AuthContext
 export const useAuth = () => {
     return React.useContext(AuthContext);

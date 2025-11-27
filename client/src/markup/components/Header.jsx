@@ -3,8 +3,20 @@ import { CiLight } from "react-icons/ci";
 import { MdOutlineNightlight } from "react-icons/md";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../Contexts/AuthContext";
+import loginService from "../services/login.service";
 
 function Header() {
+  // Use the custom hook to access the data in the context
+  const { isLogged, setIsLogged } = useAuth();
+  console.log(useAuth())
+
+  // Function to handle logout
+  const logOut = () => {
+    loginService.logOut();
+    setIsLogged(false);
+  };
+
   const [isDarkMode, setIsDarkMode] = useState(() => {
     try {
       const saved = localStorage.getItem("theme");
@@ -63,14 +75,26 @@ function Header() {
               </button>
             </li>
             <li>
-              <Link to="/Login">
-                <button className="sign-in-btn">Sign In</button>
-              </Link>
-            </li>
-            <li>
-              <Link to="/Register">
-                <button className="sign-up-btn">Sign Up</button>
-              </Link>
+              {isLogged ? (
+                <div className="link-btn">
+                  <Link
+                    to="/Register"
+                    className="theme-btn btn-style-one blue sign-up-btn"
+                    onClick={logOut}
+                  >
+                    Log out
+                  </Link>
+                </div>
+              ) : (
+                <div className="link-btn">
+                  <Link
+                    to="/login"
+                    className="theme-btn btn-style-one sign-in-btn"
+                  >
+                    Login
+                  </Link>
+                </div>
+              )}
             </li>
           </ul>
         </nav>

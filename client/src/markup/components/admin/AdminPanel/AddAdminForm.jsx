@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // Import admin service
-const adminService = require("../../../services/admin.service");
+import adminService from"../../../services/admin.service";
 
 function AddAdminForm() {
   const [admin_email, setAdmin_email] = useState("");

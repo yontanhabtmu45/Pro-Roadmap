@@ -1,5 +1,5 @@
 // function to read the data from the user's localstorage
-const api_url = process.env.REACT_APP_API_URL || "http://localhost:1010/api";
+const api_url = "http://localhost:1010/api";
 export const getUserData = () => {
   const userData = localStorage.getItem("userData");
   return userData ? JSON.parse(userData) : null;

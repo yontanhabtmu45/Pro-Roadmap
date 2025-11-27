@@ -41,9 +41,9 @@ async function getAllAdmins() {
 }
 
 // A function to get admin by email
-async function getAdminById(admin_id) {
-    const query = "SELECT * FROM admin_users WHERE admin_id = ? ";
-    const rows = await conn.executeQuery(query, [admin_id]);
+async function getAdminByEmail(admin_email) {
+    const query = "SELECT * FROM admin_users WHERE admin_email = ? ";
+    const rows = await conn.executeQuery(query, [admin_email]);
     return rows;
 }
 
@@ -68,7 +68,7 @@ module.exports = {
   createAdmin,
   checkIfAdminExists,
   getAllAdmins,
-  getAdminById,
+  getAdminByEmail,
   deleteAdmin,
   updateAdmin
 };

@@ -34,6 +34,7 @@ async function loginAdmin(adminData) {
   }
 }
 
+
 // Export the function 
 module.exports = {
   loginAdmin
