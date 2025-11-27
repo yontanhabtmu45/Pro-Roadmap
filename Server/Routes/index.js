@@ -9,7 +9,7 @@ const adminRouter = require('./admin.routes');
 // import roadmap routes
 const roadmapRouter = require('./roadmap.routes');
 // import step routes
-const steRouter = require('./steps.routes')
+const stepRouter = require('./steps.routes')
 // import login routes
 const loginRoutes = require('./login.routes');
 // add the install route to the router
@@ -21,7 +21,7 @@ router.use(loginRoutes);
 // add roadmap route to the main router
 router.use(roadmapRouter)
 // add step route to the main router
-router.use(steRouter)
+router.use(stepRouter)
 
 // export the router
 module.exports = router;

@@ -25,6 +25,39 @@ async function createRoadmap(req, res, next) {
     }
 }
 
+// create get all roadmaps controller
+async function getAllRoadmaps(req, res) {
+    try {
+        
+        const result = await roadmapService.getAllRoadmaps();
+    
+        return res.status(200).json({status: "success", data: result})
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+
+}
+
+// create get roadmap controller
+async function getRoadmap(req, res) {
+    try {
+        const {roadmap_id} = req.params;
+        if(!roadmap_id) {
+            return res.status(404).json({message: "roadmap_id required"})
+        }
+
+        const result = await roadmapService.getRoadmap(roadmap_id);
+
+        return res.status(200).json({status: "success", data: result})
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+}
+
 //  create delete roadmap controller
 async function deleteRoadmap(req, res, next) {
     try {
@@ -57,6 +90,8 @@ async function updateRoadmap(req, res, next) {
 // Export the controllers
 module.exports = {
     createRoadmap,
+    getAllRoadmaps,
+    getRoadmap,
     deleteRoadmap,
     updateRoadmap
 };

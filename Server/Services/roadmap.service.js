@@ -29,6 +29,19 @@ async function createRoadmap(roadmapData) {
     ]);
     return result;
 }
+// A function to get all roadmaps 
+async function getAllRoadmaps(roadmap_id) {
+    const query = "SELECT * FROM roadmaps ORDER BY created_at DESC";
+    const data = await conn.executeQuery(query)
+    return data;
+}
+
+// A function to get roadmap by id
+async function getRoadmap(roadmap_id) {
+    const query = "SELECT * FROM roadmaps WHERE roadmap_id = ?";
+    const result = await conn.executeQuery(query, [roadmap_id])
+    return result;
+}
 
 // A function to delete roadmap by id
 async function deleteRoadmap(roadmap_id) {
@@ -49,6 +62,8 @@ async function updateRoadmap(roadmap_id, roadmapData) {
 module.exports = {
     createRoadmap,
     checkIfRoadmapExists,
+    getAllRoadmaps,
+    getRoadmap,
     deleteRoadmap,
     updateRoadmap
 };
