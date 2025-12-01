@@ -41,11 +41,11 @@ async function getAllAdmins(req, res) {
 // create get admin controller
 async function getAdmin(req, res, next) {
   try {
-    const { admin_id } = req.params;
-    if (!admin_id) {
-      return res.status(404).json({ message: "admin_id required" });
+    const { admin_email } = req.params;
+    if (!admin_email) {
+      return res.status(404).json({ message: "admin_email required" });
     }
-    const result = await adminService.getAdminById(admin_id);
+    const result = await adminService.getAdminByEmail(admin_email);
     return res.status(200).json({ status: "success", data: result });
   } catch (error) {
     console.log(error);

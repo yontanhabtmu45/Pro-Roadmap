@@ -14,6 +14,11 @@ import Header from "./markup/components/Header";
 import AllRoadmaps from "./markup/Pages/AllRoadmaps";
 import About from "./markup/Pages/About";
 import Dashboard from "./markup/components/admin/Dashboard/Dashboard";
+import ManageAdmins from "./markup/Pages/admin/ManageAdmins";
+import ManageRoadmaps from "./markup/Pages/admin/ManageRoadmaps";
+import AddRoadmap from "./markup/Pages/admin/AddRoadmap";
+import StepsSettings from "./markup/Pages/admin/StepsSettings";
+import AddStep from "./markup/Pages/admin/AddStep";
 
 const clientId =
   "1083223003406-b78mdntufb75hg2srm1uuritag9bcf8f.apps.googleusercontent.com";
@@ -29,6 +34,11 @@ function App() {
         <Route path="/AllRoadmaps" element={<AllRoadmaps />} />
         <Route path="/About" element={<About />} />
         <Route path="/admin" element={<Dashboard />} />
+        <Route path="/admins" element={<ManageAdmins />} />
+        <Route path="/admin/roadmaps" element={<ManageRoadmaps />} />
+        <Route path="/admin/roadmap" element={<AddRoadmap />} />
+        <Route path="/admin/steps" element={<StepsSettings />} />
+        <Route path="/admin/step" element={<AddStep />} />
       </Routes>
     </>
   );

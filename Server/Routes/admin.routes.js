@@ -10,7 +10,7 @@ router.post('/api/admin', adminController.createAdmin);
 // create route to handle get all admins request on get
 router.get('/api/admins' ,adminController.getAllAdmins)
 // create route to handle get admin request on get
-router.get('/api/admin/:admin_id', adminController.getAdmin);
+router.get('/api/admin/:admin_email', adminController.getAdmin);
 // create route to handle delete admin request on delete
 router.delete('/api/admin/:admin_id', adminController.deleteAdmin);
 // create route to handle admin request on update
