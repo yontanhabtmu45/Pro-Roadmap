@@ -203,3 +203,52 @@ p, input{
 .github-login:hover {
   border-color: #6e5494;
 }
+
+/* Error message */
+.validation-error , .error-message {
+  color: #f87171; 
+  background-color: rgba(248, 113, 113, 0.1); 
+  border: 1px solid #f87171;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+/* Message banner used for success/error/info notices */
+.message-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+.message-banner .message-text {
+  flex: 1 1 auto;
+  color: #e6eef6;
+}
+.message-banner .close-btn {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.message-banner.success {
+  background: linear-gradient(90deg, rgba(34,197,94,0.12), rgba(34,197,94,0.06));
+  border: 1px solid rgba(34,197,94,0.25);
+  color: #6ee7b7;
+}
+.message-banner.error {
+  background: linear-gradient(90deg, rgba(239,68,68,0.08), rgba(239,68,68,0.04));
+  border: 1px solid rgba(239,68,68,0.18);
+  color: #fca5a5;
+}
+.message-banner.info {
+  background: linear-gradient(90deg, rgba(96,165,250,0.06), rgba(96,165,250,0.03));
+  border: 1px solid rgba(96,165,250,0.12);
+  color: #93c5fd;
+}

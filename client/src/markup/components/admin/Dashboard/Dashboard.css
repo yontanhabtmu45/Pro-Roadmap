@@ -1,0 +1,39 @@
+.dashboard-wrap{
+  display:flex;
+  gap:1.5rem;
+  padding:24px 0;
+}
+.admin-sidebar{
+  width:260px;
+}
+.dashboard-main{
+  flex:1;
+  color: var(--text-primary, #0f1724);
+}
+.summary-cards{
+  display:flex;
+  gap:1rem;
+  margin-bottom:1rem;
+}
+/* Use the project-wide .card styles from Home.css for consistency */
+.summary-cards .card{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+}
+.summary-cards .card h3{margin:0;font-size:1.6rem}
+.summary-cards .card p{margin:0.25rem 0 0;color:var(--text-muted, #9aa6b2)}
+.recent-list{margin-top:1rem}
+.recent-list .item{padding:0.6rem;border-bottom:1px solid var(--muted-border, rgba(15,23,36,0.06));display:flex;justify-content:space-between}
+.meta{color:var(--text-muted,#9aa6b2);font-size:0.9rem}
+.empty{color:var(--text-muted,#7a7a7a);padding:1rem}
+
+.dashboard-hero{
+  background: linear-gradient(180deg, var(--surface, #ffffff), rgba(0,0,0,0));
+  border: 1px solid var(--muted-border, rgba(15,23,36,0.06));
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+

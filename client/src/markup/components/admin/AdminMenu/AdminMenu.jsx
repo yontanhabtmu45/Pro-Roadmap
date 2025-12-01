@@ -1,20 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import "../../../Pages/Home.css";
+import "./AdminMenu.css";
 
 function AdminMenu() {
   return (
-    <div>
-      <div className="admin-menu">
-        <h2>Admin Menu</h2>
+    <aside className="card admin-menu">
+      <h3 className="card-title">Admin</h3>
+      <p className="card-desc">Quick links and management actions</p>
+      <div className="list-group" style={{marginTop:12}}>
+        <Link to="/admin" className="list-link">Dashboard</Link>
+        <Link to="/admins" className="list-link">Manage Admins</Link>
+        <Link to="/admin/roadmaps" className="list-link">Manage Roadmaps</Link>
+        <Link to="/admin/roadmap" className="list-link">Add New Roadmap</Link>
+        <Link to="/admin/steps" className="list-link">Steps Settings</Link>
+        <Link to="/admin/step" className="list-link">Add New Step</Link>
       </div>
-      <div className="list-group">
-        <a href="/admin" className="list-group-item list-group-item-action">Dashboard</a>
-        <a href="/admins" className="list-group-item list-group-item-action">Manage Admins</a>
-        <a href="/admin/roadmaps" className="list-group-item list-group-item-action">Manage Roadmaps</a>
-        <a href="/admin/roadmap" className="list-group-item list-group-item-action">Add New Roadmap</a>
-        <a href="/admin/steps" className="list-group-item list-group-item-action">Steps Settings</a>
-        <a href="/admin/step" className="list-group-item list-group-item-action" >Add New Step</a>
-      </div>
-    </div>
+    </aside>
   );
 }
 

@@ -11,10 +11,13 @@ function Header() {
   const { isLogged, setIsLogged } = useAuth();
   console.log(useAuth())
 
+  const [adminLogged, setAdminLogged] = useState(false);
+
   // Function to handle logout
   const logOut = () => {
-    loginService.logOut();
+    loginService.logout();
     setIsLogged(false);
+    setAdminLogged(false);
   };
 
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -42,6 +45,16 @@ function Header() {
       /* ignore */
     }
   }, [isDarkMode]);
+
+  // Check for admin login in localStorage and keep in sync with context
+  useEffect(() => {
+    try {
+      const admin = localStorage.getItem("admin");
+      setAdminLogged(!!admin);
+    } catch (e) {
+      setAdminLogged(false);
+    }
+  }, [isLogged]);
 
   const toggleTheme = () => setIsDarkMode((v) => !v);
 
@@ -75,7 +88,22 @@ function Header() {
               </button>
             </li>
             <li>
-              {isLogged ? (
+              {adminLogged ? (
+                <div className="link-btn admin-links">
+                  <Link
+                    to="/admin"
+                    className="theme-btn btn-style-one sign-in-btn"
+                  >
+                    Admin
+                  </Link>
+                  <button
+                    className="theme-btn btn-style-one blue sign-up-btn"
+                    onClick={logOut}
+                  >
+                    Log out
+                  </button>
+                </div>
+              ) : isLogged ? (
                 <div className="link-btn">
                   <Link
                     to="/Register"

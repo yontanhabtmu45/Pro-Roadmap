@@ -8,6 +8,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../Contexts/AuthContext";
 import loginService from "../../services/login.service";
+import MessageBanner from "../MessageBanner/MessageBanner";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 
@@ -20,6 +21,7 @@ function LoginForm() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [serverError, setServerError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleLogout = () => {
     googleLogout();
@@ -73,40 +75,34 @@ function LoginForm() {
       admin_email,
       admin_password,
     };
-    console.log(formData);
-    // Call the service
-    const loginAdmin = loginService.login(formData);
-    console.log(loginAdmin);
-    loginAdmin
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response);
+    try {
+      const res = await loginService.login(formData);
+      if (res.success) {
+        const response = res.data; // server response parsed
         if (response.status === "success") {
-          // Save the user in the local storage
-          if (response.data.admin_token) {
-            console.log(response.data);
+          if (response.data && response.data.admin_token) {
             localStorage.setItem("admin", JSON.stringify(response.data));
           }
-          // Redirect the user to the dashboard
-          navigate('/admin');
-          console.log(location);
-          if (location.pathname === "/login") {
-            // navigate('/admin');
-            // window.location.replace('/admin');
-            // To home for now
-            window.location.replace("/");
-          } else {
-            window.location.reload();
-          }
+          // show success banner briefly then redirect
+          setSuccessMessage("Login successful — redirecting...");
+          setTimeout(() => {
+            navigate("/admin");
+            if (location.pathname === "/login") {
+              window.location.replace("/");
+            } else {
+              window.location.reload();
+            }
+          }, 900);
         } else {
-          // Show an error message
-          setServerError(response.message);
+          setServerError(response.message || "Login failed");
         }
-      })
-      .catch((err) => {
-        console.log(err);
-        setServerError("An error has occurred. Please try again later." + err);
-      });
+      } else {
+        setServerError(res.message || "Login failed");
+      }
+    } catch (err) {
+      console.error(err);
+      setServerError("An error has occurred. Please try again later.");
+    }
   };
 
   return (
@@ -124,11 +120,14 @@ function LoginForm() {
             <h1>Welcome Back</h1>
             <p>Login to your account to continue your journey.</p>
             <div className="login-form form-signup ">
-              {serverError && (
-                <div className="validation-error" role="alert">
-                  {serverError}
-                </div>
-              )}
+              <MessageBanner
+                type={serverError ? "error" : successMessage ? "success" : ""}
+                message={serverError || successMessage}
+                onClose={() => {
+                  setServerError("");
+                  setSuccessMessage("");
+                }}
+              />
               <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email Address</label>
                 {emailError && (

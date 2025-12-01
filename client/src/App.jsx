@@ -13,7 +13,7 @@ import { gapi } from "gapi-script";
 import Header from "./markup/components/Header";
 import AllRoadmaps from "./markup/Pages/AllRoadmaps";
 import About from "./markup/Pages/About";
-import AddAdmin from "./markup/Pages/admin/AddAdmin";
+import Dashboard from "./markup/components/admin/Dashboard/Dashboard";
 
 const clientId =
   "1083223003406-b78mdntufb75hg2srm1uuritag9bcf8f.apps.googleusercontent.com";
@@ -28,7 +28,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/AllRoadmaps" element={<AllRoadmaps />} />
         <Route path="/About" element={<About />} />
-        <Route path="/admin" element={<AddAdmin />} />
+        <Route path="/admin" element={<Dashboard />} />
       </Routes>
     </>
   );

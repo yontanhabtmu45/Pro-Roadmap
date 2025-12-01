@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import "../../../Pages/Register.css";
 // Import admin service
 import adminService from"../../../services/admin.service";
+import MessageBanner from "../../MessageBanner/MessageBanner";
 
 function AddAdminForm() {
   const [admin_email, setAdmin_email] = useState("");
@@ -9,6 +11,7 @@ function AddAdminForm() {
   const [admin_name, setAdmin_name] = useState("");
   const [isActive, setIsActive] = useState(true);
   const [success, setSuccess] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   // Errors
   const [error, setError] = useState("");
@@ -70,36 +73,25 @@ function AddAdminForm() {
     };
 
     // pass the formdata to the service
-    const newAdmin = await adminService.register(formData);
-    newAdmin
-      .then((response) => response.json())
-      .then((data) => {
-        // console.log(data);
-        // If Error is returned from the API server, set the error message
-        if (data.error) {
-          setServerError(data.error);
-        } else {
-          // Handle successful response
-          setSuccess(true);
-          setServerError("");
-          // Redirect to the employees page after 2 seconds
-          // For now, just redirect to the home page
-          setTimeout(() => {
-            // window.location.href = '/admin/employees';
-            window.location.href = "/";
-          }, 2000);
-        }
-      })
-      // Handle Catch
-      .catch((error) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        setServerError(resMessage);
-      });
+    try {
+      const res = await adminService.register(formData);
+      if (res.success) {
+        setSuccess(true);
+        setSuccessMessage("New admin added successfully! Redirecting...");
+        setServerError("");
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 1200);
+      } else {
+        setServerError(res.message || "Failed to add admin");
+      }
+    } catch (error) {
+      const resMessage =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString();
+      setServerError(resMessage);
+    }
   };
 
   return (
@@ -111,12 +103,14 @@ function AddAdminForm() {
       </div>
       <div className="admin_form_container">
         <form onSubmit={handleSubmit} className="admin_form">
-          {serverError && <div className="error-message">{serverError}</div>}
-          {success && (
-            <div className="success-message">
-              New admin added successfully! Redirecting...
-            </div>
-          )}
+          <MessageBanner
+            type={serverError ? "error" : successMessage ? "success" : ""}
+            message={serverError || successMessage}
+            onClose={() => {
+              setServerError("");
+              setSuccessMessage("");
+            }}
+          />
           <div className="form-group">
             <label>Name:</label>
             <input
