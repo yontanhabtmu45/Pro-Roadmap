@@ -30,7 +30,7 @@ async function createRoadmap(roadmapData) {
     return result;
 }
 // A function to get all roadmaps 
-async function getAllRoadmaps(roadmap_id) {
+async function getAllRoadmaps() {
     const query = "SELECT * FROM roadmaps ORDER BY created_at DESC";
     const data = await conn.executeQuery(query)
     return data;

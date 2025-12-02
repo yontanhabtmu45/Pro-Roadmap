@@ -3,7 +3,7 @@ const api_url = "http://localhost:1010/api";
 // A function to create steps for a specific roadmap
 export const createSteps = async (roadmap_id, formData) => {
   try {
-    const response = await fetch(`${api_url}/admin/steps/${roadmap_id}`, {
+    const response = await fetch(`${api_url}/admin/steps`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -19,10 +19,11 @@ export const createSteps = async (roadmap_id, formData) => {
   }
 };
 
+
 // A function to get all steps for a specific roadmap
-export const getStepsByRoadmap = async (roadmap_id) => {
+export const getSteps = async () => {
   try {
-    const response = await fetch(`${api_url}/admin/steps/${roadmap_id}`, {
+    const response = await fetch(`${api_url}/admin/steps`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
@@ -83,7 +84,7 @@ export const deleteStep = async (step_id) => {
 // Export all functions for use in other parts of the application
 export default {
   createSteps,
-  getStepsByRoadmap,
+  getSteps,
   getStepById,
   updateStep,
   deleteStep,

@@ -19,6 +19,7 @@ import ManageRoadmaps from "./markup/Pages/admin/ManageRoadmaps";
 import AddRoadmap from "./markup/Pages/admin/AddRoadmap";
 import StepsSettings from "./markup/Pages/admin/StepsSettings";
 import AddStep from "./markup/Pages/admin/AddStep";
+import EditAdmin from "./markup/Pages/admin/EditAdmin";
 
 const clientId =
   "1083223003406-b78mdntufb75hg2srm1uuritag9bcf8f.apps.googleusercontent.com";
@@ -39,6 +40,7 @@ function App() {
         <Route path="/admin/roadmap" element={<AddRoadmap />} />
         <Route path="/admin/steps" element={<StepsSettings />} />
         <Route path="/admin/step" element={<AddStep />} />
+        <Route path="/admin/edit-admin/:id" element={<EditAdmin />} />
       </Routes>
     </>
   );

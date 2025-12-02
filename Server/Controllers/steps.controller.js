@@ -45,13 +45,8 @@ async function setSteps(req, res) {
 // Get all steps for a roadmap
 async function getSteps(req, res) {
   try {
-    const { roadmap_id } = req.params;
 
-    if (!roadmap_id) {
-      return res.status(400).json({ error: "roadmap_id is required" });
-    }
-
-    const steps = await stepService.getSteps(roadmap_id);
+    const steps = await stepService.getSteps();
 
     return res.status(200).json({
       status: "success",
