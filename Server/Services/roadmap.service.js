@@ -5,7 +5,7 @@ const conn = require("../config/db.config");
 async function checkIfRoadmapExists(roadmap_title) {
   const query = "SELECT * FROM roadmaps WHERE title = ? ";
   const rows = await conn.executeQuery(query, [roadmap_title]);
-  console.log(rows);
+//   console.log(rows);
     if (rows.length > 0) {
         return true;
     }
@@ -31,9 +31,9 @@ async function createRoadmap(roadmapData) {
 }
 // A function to get all roadmaps 
 async function getAllRoadmaps() {
-    const query = "SELECT * FROM roadmaps ORDER BY created_at DESC";
-    const data = await conn.executeQuery(query)
-    return data;
+    const query = "SELECT * FROM roadmaps";
+    const result = await conn.executeQuery(query)
+    return result;
 }
 
 // A function to get roadmap by id

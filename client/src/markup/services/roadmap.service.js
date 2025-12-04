@@ -26,7 +26,7 @@ export const getAllRoadmaps = async () => {
     const data = await response.json();
     // Check the `status` field in the `data` object
     if (response.ok && data.status === "success") {
-      return { success: true, data: data.data || [] }; // Extract the `data` array
+      return { success: true, data: data.data }; // Extract the `data` array
     }
     return { success: false, message: data.message || "Failed to fetch roadmaps" };
   } catch (error) {

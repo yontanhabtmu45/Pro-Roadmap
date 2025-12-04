@@ -23,8 +23,9 @@ async function setSteps(roadmap_id, steps) {
 // Get steps for a roadmap
 async function getSteps() {
   const query = `
-    SELECT * FROM roadmap_steps ORDER BY created_at DESC`;
-  return await conn.executeQuery(query);
+    SELECT * FROM roadmap_steps`;
+  const data = await conn.executeQuery(query);
+  return data;
 }
 
 async function getSingleStep(step_id) {

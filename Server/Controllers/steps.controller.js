@@ -1,5 +1,5 @@
 // Import step service
-const stepService = require("../Services/setps.service");
+const stepService = require("../Services/steps.service");
 
 // Create/set steps for a roadmap
 async function setSteps(req, res) {
@@ -11,9 +11,7 @@ async function setSteps(req, res) {
     }
 
     if (!steps || !Array.isArray(steps) || steps.length === 0) {
-      return res
-        .status(400)
-        .json({ error: "Steps must be a non-empty array" });
+      return res.status(400).json({ error: "Steps must be a non-empty array" });
     }
 
     // Validate each step
@@ -45,7 +43,6 @@ async function setSteps(req, res) {
 // Get all steps for a roadmap
 async function getSteps(req, res) {
   try {
-
     const steps = await stepService.getSteps();
 
     return res.status(200).json({
@@ -53,7 +50,7 @@ async function getSteps(req, res) {
       data: steps,
     });
   } catch (error) {
-    console.error("GET STEPS ERROR:", error);
+    console.log(error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 }
@@ -61,7 +58,7 @@ async function getSteps(req, res) {
 // Get a single set for a roadmap
 async function getSingleStep(req, res) {
   try {
-    const {step_id} = req.params;
+    const { step_id } = req.params;
 
     if (!step_id) {
       return res.status(400).json({ error: "step_id is required" });
@@ -73,7 +70,6 @@ async function getSingleStep(req, res) {
       status: "success",
       data: step,
     });
-
   } catch (error) {
     console.error("GET STEP ERROR:", error);
     return res.status(500).json({ error: "Internal Server Error" });
@@ -103,19 +99,16 @@ async function deleteSteps(req, res) {
 
 // Update a single step
 async function updateSteps(req, res) {
-  
-
   try {
     const { step_id } = req.params;
     const { step_title, step_order, step_description } = req.body;
-    
 
     if (!step_id) {
       return res.status(400).json({ error: "step_id is required" });
     }
 
     // check if step_id exists
-    const existingSteps = await stepService.getSteps(step_id);
+    const existingSteps = await stepService.getSingleStep(step_id);
     if (existingSteps.length === 0) {
       return res.status(404).json({ error: "Step not found" });
     }
@@ -127,7 +120,10 @@ async function updateSteps(req, res) {
         .json({ error: "At least one field must be provided for update" });
     }
     // check if step_order is a positive number if provided
-    if (step_order !== undefined && (typeof step_order !== "number" || step_order < 1)) {
+    if (
+      step_order !== undefined &&
+      (typeof step_order !== "number" || step_order < 1)
+    ) {
       return res
         .status(400)
         .json({ error: "step_order must be a positive number" });

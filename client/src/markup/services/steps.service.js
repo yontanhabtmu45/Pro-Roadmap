@@ -28,7 +28,7 @@ export const getSteps = async () => {
       headers: { "Content-Type": "application/json" },
     });
     const data = await response.json();
-    if (response.ok) return { success: true, data };
+    if (response.ok) return { success: true, data:data };
     return { success: false, message: data.message || "Failed to fetch steps" };
   } catch (error) {
     return { success: false, message: error.message };
